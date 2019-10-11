@@ -1,0 +1,51 @@
+<<style>
+<!--
+
+-->
+.form-group{
+	align-content: center;
+	flex: "1"
+}
+.form-control{
+	flex: "1"
+} 
+
+</style>
+{% extends "base.html" %}
+
+
+{% block content %}
+<h1>Contact us</h1>
+<form method="POST">
+{% csrf_token %}
+<div class="form-group" >
+{{form.name.label_tag}}
+<input 	class=" form-control {% if form.name.errors %}invalid{% endif %} "
+		type="text"
+		id="name_id"
+		name="name"
+		placeholder="enter your name"
+		value={{ form.name.value|default:"" }} >
+{% if form.name.errors %}
+<div>
+{{ form.name.errors }}
+</div>
+{% endif %}		
+</div>
+<div>
+{{ form.message.label_tag }}
+<textarea id="message_id"
+		name="message"
+		placeholder="give us ur feedback"
+		 >
+			value={{ form.message.value|default:"" }}
+</textarea>
+{% if form.name.errors %}
+<div>
+{{ form.message.errors }}
+</div>
+{% endif %}		
+</div>
+<button type="submit" class="btn btn-primary" >submit</button>
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block extrahead %}
+<script src="{% static 'js/chart.min.js' %}"></script>
+{% endblock extrahead %}
+{% block content %}
+<h3>Select the period</h3>
+<form method="POST">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input type="submit" class="btn btn-info" value="get result"/>
+  
+</form>
+{% if labels and values %}
+<canvas id="myChaart" width="900" height="400">
+
+</canvas>
+<script>
+var ctx = document.getElementById("myChaart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: {{labels|safe}},
+        datasets: [
+            {
+                label: "no of products",
+                backgroundColor: "blue",
+                data: {{values|safe}}
+            }
+        ]
+    }, options: {
+            responsive: false,
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }
+                ]
+            }
+        }
+    });
+</script>
+{% endif %}
+{% endblock content %}

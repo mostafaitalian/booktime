@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>please fil in the form if you want to update an address</h3>
+  <form method="POST" >
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">update address</button>    
+  </form>
+{% endblock content %}

@@ -1,0 +1,16 @@
+[
+{
+  "model": "main.producttag",
+  "pk": 1,
+  "fields": {
+    "name": "adventure",
+    "slug": "adventure",
+    "description": "",
+    "active": true,
+    "products": [
+      1,
+      2
+    ]
+  }
+}
+]

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h3>please fil in the form below</h3>
+  <form method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% include "includes/field.html" with field=form.email %}
+      {% include "includes/field.html" with field=form.password %}
+      <button type="submit" class="btn btn-gray">
+          login
+      </button>
+  </form>
+{% endblock content %}

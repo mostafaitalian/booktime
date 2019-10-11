@@ -1,0 +1,13 @@
+
+{
+  "expo": {
+    "sdkVersion": "35.0.0",
+    "name": "booktime-mobile",
+    "description": "your app desc",
+    "version": "1.0.0",
+    "android": {
+      "package": "com.sohagfaruque.xxxx"
+    }
+  }
+
+}

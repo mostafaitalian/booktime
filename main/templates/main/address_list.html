@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container-fluid">
+    {% for address in object_list  %}
+      <div class="raw">
+          <p>
+              {{address.user.email}}<br>
+              {{address.address1}}<br>
+              {{address.country}}<br>
+              <p>
+              <a href="{% url "main:address_update" address.id %}" class="btn btn-warning"  >Update address</a>
+              <a href="{% url "main:address_delete" address.id %}" class="btn btn-danger"  >Update address</a>
+              </p>  
+          </p>
+          
+      </div>
+      {% empty %}
+      <p>no addresses yet</p>
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
+      {% if forloop.last %}
+        <a href="{% url 'main:address_create' %}">create address</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock content %}

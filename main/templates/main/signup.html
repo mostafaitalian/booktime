@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>
+        please fill in the fields to signup
+    </h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.email.label_tag }}
+            <input class="form-control"
+            type="email"
+            id="email_id"
+            name="email"
+            placeholder="enter your email"
+            value="{{form.email.value|default:""}}"/>
+            
+            {% if form.email.errors %}
+                <div>
+                    {{ form.email.errors }}    
+                </div>
+            {% endif %}
+                
+            </div>
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                <input class="form-control"
+                type="password"
+                id="password1_id"
+                name="password1"
+                placeholder="enter ur password"
+                value="{{form.password1.value|default:""}}"/>
+                {% if form.password1.errors %}
+                <div>
+                    {{ form.password1.errors }}    
+                </div>
+                {% endif %}                
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form.password2.label_tag }}
+            <input class="form-control"
+            type="password"
+            id="password2_id"
+            name="password2"
+            placeholder="confirm password"
+            value="{{form.password2.value|default:""}}"/>
+            {% if form.password2.errors %}
+            <div>
+                {{ form.password2.errors }}    
+            </div>
+            {% endif %}                
+        </div>
+        <Button type="submit" class="btn btn-primary">submit</Button>            
+    </form>
+{% endblock content %}

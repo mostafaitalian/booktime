@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Basket</h2>
+{% if formset %}
+<p>You can adjust the quantities below.</p>
+<form method="POST">
+{% csrf_token %}
+{{ formset.management_form }}
+{% for form in formset %}
+<p>
+<h4 style="color: blue">{{ form.instance.product.name }}</h4><br>
+<p style="align-content: center; color: red">{{ form }}</p>
+</p>
+{% endfor %}
+<button type="submit" class="btn btn-default">
+Update basket</button>
+{% if user.is_authenticated %}
+<a href="{% url "main:address_select" %}" class="btn btn-primary">Place order</a>
+{% else %}
+<a href="{% url "signup" %}?next={% url "main:address_select" %}" class="btn btn-primary">Signup</a>
+<a href="{% url "login" %}?next={% url "main:address_select" %}" class="btn btn-primary">Login</a>
+{% endif %}
+</form>
+{% else %}
+<p>You have no items in the basket.</p>
+{% endif %}
+{% endblock content %}
+{% block js %}
+{% if formset %}
+    {{ formset.media }}
+{% endif %}
+{% endblock js %}
